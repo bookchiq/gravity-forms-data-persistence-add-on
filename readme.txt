@@ -32,18 +32,18 @@ Our plugin resolves this issue. Simple!
 
 == Frequently Asked Questions ==
 
-= Can you please help me to customize/extend Gravity Form? =
+= Can you help me in customizing/extending Gravity Forms functionality? =
 
-Yah, sure.no third party knows better about Gravity Form than us.
+Yeah, sure. No one knows better about Gravity Forms than us :)
 
-= Should I pay for this as we do for Gravity Form? =
+= Do I need to pay for this plugin as we do for Gravity Forms? =
 
-No, this is absolutely free add-on.
+No, this is an absolutely free add-on.
 
 = Do you have any client support? =
 
-Not a dedicated support, but we will try our best to reply you back.
+We don't provide a dedicated support, but we will try our best to reply you back.
 
 == Screenshots ==
 
-1. Just check the box from form settings->Advanced Tab
+1. Just click on the checkbox labeled "Enable form persistance" for individual forms from Form Settings > Advanced Tab.
