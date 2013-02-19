@@ -3,7 +3,7 @@ Contributors: asthait
 Tags: gravity, form, data, field, persistence, add-on, addon, plugin, plug-in, extension
 Requires at least: 2.9.2
 Tested up to: 3.5.1
-Stable tag: 1.1.0
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
