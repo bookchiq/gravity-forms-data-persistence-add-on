@@ -43,14 +43,16 @@ function set_post_content($entry, $form) {
         if (is_user_logged_in()) {
             $option_key = getFormOptionKeyForGF($form);
             update_option($option_key, json_encode($_POST));
+
+            $entry_option_key = getEntryOptionKeyForGF($entry);
+            if (get_option($entry_option_key)) {
+                //Delete old entry from GF tables
+                delete_entry_from_gf_tables(get_option($entry_option_key));
+            }
         }
 
         //Update entry in wp_options table
-        $entry_option_key = getEntryOptionKeyForGF($entry);
-        if (get_option($entry_option_key)) {
-            //Delete old entry from GF tables
-            delete_entry_from_gf_tables(get_option($entry_option_key));
-        }
+
         update_option($entry_option_key, $entry['id']);
     }
 }
@@ -110,7 +112,7 @@ function persistency_settings($position, $form_id) {
         <li>
             <input type="checkbox" id="form_persist_value" onclick="SetFormPersistency();" /> Enable form persistence
             <label for="form_persist_value">              
-        <?php gform_tooltip("form_persist_tooltip") ?>
+                <?php gform_tooltip("form_persist_tooltip") ?>
             </label>
 
         </li>
@@ -124,11 +126,11 @@ add_action("gform_editor_js", "editor_script_persistency");
 function editor_script_persistency() {
     ?>
     <script type='text/javascript'>
-            
+                
         function SetFormPersistency(){
             form.isPersistent = jQuery("#form_persist_value").is(":checked");
         }
-            
+                
         jQuery("#form_persist_value").attr("checked", form.isPersistent);       
     </script>
     <?php
