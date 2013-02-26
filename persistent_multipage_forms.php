@@ -4,7 +4,7 @@
   Plugin URI: http://asthait.com
   Description: This is an <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a> plugin. A big limitation with Gravity Form is, in case of big multipage forms, if you close or refresh the page during somewhere midle of some step. all the steps data will loose. this plugin solves that problem.
   Author: Astha Team
-  Version: 1
+  Version: 1.2.0
   Author URI: http://asthait.com
  */
 
