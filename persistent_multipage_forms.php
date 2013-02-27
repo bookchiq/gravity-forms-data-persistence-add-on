@@ -4,7 +4,7 @@
   Plugin URI: http://asthait.com
   Description: This is an <a href="http://www.gravityforms.com/" target="_blank">Gravity Form</a> plugin. A big limitation with Gravity Form is, in case of big multipage forms, if you close or refresh the page during somewhere midle of some step. all the steps data will loose. this plugin solves that problem.
   Author: Astha Team
-  Version: 1.2.0
+  Version: 3.0
   Author URI: http://asthait.com
  */
 
@@ -47,7 +47,10 @@ function set_post_content($entry, $form) {
             $entry_option_key = getEntryOptionKeyForGF($entry);
             if (get_option($entry_option_key)) {
                 //Delete old entry from GF tables
-                delete_entry_from_gf_tables(get_option($entry_option_key));
+                if (!$form['isEnableMulipleEntry']) {
+                    delete_entry_from_gf_tables(get_option($entry_option_key));
+                }
+                
             }
         }
 
@@ -116,6 +119,13 @@ function persistency_settings($position, $form_id) {
             </label>
 
         </li>
+        <li>
+            <input type="checkbox" id="form_enable_multiple_entry_entry" onclick="SetFormMultipleEntry();" /> Enable multi entry from same user while form is persistent
+            <label for="form_enable_multiple_entry">              
+                <?php gform_tooltip("form_enable_multiple_entry_tooltip") ?>
+            </label>
+
+        </li>
         <?php
     }
 }
@@ -130,8 +140,13 @@ function editor_script_persistency() {
         function SetFormPersistency(){
             form.isPersistent = jQuery("#form_persist_value").is(":checked");
         }
+        function SetFormMultipleEntry(){
+            form.isEnableMulipleEntry = jQuery("#form_enable_multiple_entry_entry").is(":checked");
+        }
                 
         jQuery("#form_persist_value").attr("checked", form.isPersistent);       
+        jQuery("#form_enable_multiple_entry_entry").attr("checked", form.isEnableMulipleEntry);    
+        
     </script>
     <?php
 }
@@ -141,5 +156,6 @@ add_filter('gform_tooltips', 'add_persistency_tooltips');
 
 function add_persistency_tooltips($tooltips) {
     $tooltips["form_persist_tooltip"] = "<h6>Persistency</h6>Check this box to make this form persistant";
+    $tooltips["form_enable_multiple_entry_tooltip"] = "<h6>Persistency</h6>This will allow multiple entry from same user but, user can't edit their last";
     return $tooltips;
 }
